@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package teste;
 
+package teste;
 import java.util.Calendar;
 
-/**
- *
- * @author aluno
- */
 public class Unipraxis {
     private int matricula;
+    private String graduacao;
     private String nome;
     private int anoIngresso;
     private String curso;
@@ -21,6 +13,12 @@ public class Unipraxis {
     private int creditos;
     private int anosPermanecidos;
     
+    public String getGraduacao(){
+        return graduacao;
+    }
+    public void setGraduacao(String graduacao){
+        this.graduacao = graduacao;
+    }
     
     public String getNome(){
         return nome;   
@@ -49,16 +47,26 @@ public class Unipraxis {
     public void setAno(int anoIngresso){
         this.anoIngresso = anoIngresso;
     }
-    public int getPermanecido(){
-        Calendar atual = Calendar.getInstance();    
-        return this.anosPermanecidos =  atual.get(Calendar.YEAR) - this.anoIngresso;
+    
+    public int getPermanecido(){    
+        return this.anosPermanecidos;
     }
+    public void setPermanecidos(){
+        Calendar atual = Calendar.getInstance();
+        this.anosPermanecidos = atual.get(Calendar.YEAR) - this.anoIngresso;
+    }
+    
     public int getDiciplinas(){
         return aprovDici;
     }
     public void setDiciplinas(int aprovDici){
         this.aprovDici = aprovDici;
-        this.creditos = aprovDici*4;
+        if(this.graduacao == "graduando"){
+            this.creditos = aprovDici*4;
+        }else if(this.graduacao == "pós-graduando"){
+            this.creditos = aprovDici*2;
+        }
+        
     }
     
     public float getMensalidade(){
@@ -67,5 +75,13 @@ public class Unipraxis {
     public void setMensalidade(float mensalidade){
         this.valorMensa = mensalidade;
     }
+
+    public void Status(){
+        System.out.println("Aluno: "+this.nome);
+        System.out.println("Curso: "+this.curso);
+        System.out.println("Matricula: "+this.matricula);
+        System.out.println("Tempo de faculdade: "+this.anosPermanecidos);
+        System.out.println("Mensalidade: "+this.valorMensa+" reais");
+        System.out.println("Creditos: "+this.creditos);
+    }
 }
- 
