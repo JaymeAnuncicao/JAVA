@@ -1,6 +1,8 @@
 
 package teste;
+
 import java.util.Calendar;
+import java.util.Scanner;
 
 public class Unipraxis {
     private int matricula;
@@ -12,12 +14,20 @@ public class Unipraxis {
     private int aprovDici;
     private int creditos;
     private int anosPermanecidos;
+
+
     
-    public String getGraduacao(){
+   public String getGraduacao(){
         return graduacao;
     }
-    public void setGraduacao(String graduacao){
+    public void setGraduacao(String graduacao){ 
         this.graduacao = graduacao;
+//        if(this.aprovDici == 8){
+//            this.creditos = 4;
+//        }else if(this.aprovDici == 4){
+//            this.creditos = 2;
+//        }
+        
     }
     
     public String getNome(){
@@ -30,7 +40,7 @@ public class Unipraxis {
     public String getCurso(){
         return curso;
     }
-    public void setCurso(String curso){
+    public void setCurso(String curso){ 
         this.curso = curso;
     }
     
@@ -46,14 +56,12 @@ public class Unipraxis {
     }
     public void setAno(int anoIngresso){
         this.anoIngresso = anoIngresso;
+        Calendar atual = Calendar.getInstance();
+        this.anosPermanecidos = atual.get(Calendar.YEAR) - anoIngresso;
     }
     
     public int getPermanecido(){    
         return this.anosPermanecidos;
-    }
-    public void setPermanecidos(){
-        Calendar atual = Calendar.getInstance();
-        this.anosPermanecidos = atual.get(Calendar.YEAR) - this.anoIngresso;
     }
     
     public int getDiciplinas(){
@@ -61,14 +69,24 @@ public class Unipraxis {
     }
     public void setDiciplinas(int aprovDici){
         this.aprovDici = aprovDici;
-        if(this.graduacao == "graduando"){
-            this.creditos = aprovDici*4;
-        }else if(this.graduacao == "pós-graduando"){
-            this.creditos = aprovDici*2;
-        }
-        
+//        if(this.graduacao == "G"){
+//            this.creditos = this.aprovDici*4;
+//        }else if(this.graduacao == "PG"){
+//            this.creditos = this.aprovDici*2;
+//        }
+//        
     }
-    
+
+    public int getCreditos(){
+        return creditos;
+    }    
+    public void setCreditos(){
+        if("G".equals(this.graduacao)){
+            this.creditos = this.aprovDici*4;
+        }else if("PG".equals(this.graduacao)){
+            this.creditos = this.aprovDici*2;
+        }
+    }
     public float getMensalidade(){
         return valorMensa;
     }
@@ -84,4 +102,7 @@ public class Unipraxis {
         System.out.println("Mensalidade: "+this.valorMensa+" reais");
         System.out.println("Creditos: "+this.creditos);
     }
+
+
+
 }
