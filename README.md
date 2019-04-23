@@ -13,5 +13,5 @@ Atributos: São as variaveis que contém as caracteristicas de um dado objeto.
 
 Metódos: São funções que dão uma finalidade para um ou mais atributos, complementando o seu objeto.
 
-Herança:
+Herança: São caracteristicas que podem ser atribuidas para outras classes
 
