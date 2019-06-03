@@ -7,6 +7,7 @@ package View;
 import Controller.Biblioteca;
 import Controller.BibliotecaTableModel;
 import Controller.Livro;
+import javax.swing.JOptionPane;
 
 
 import javax.swing.table.DefaultTableModel;
@@ -35,6 +36,7 @@ public class frameInicio extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -135,16 +137,30 @@ public class frameInicio extends javax.swing.JFrame {
                 "Nome", "Editora", "Edição", "Área"
             }
         ));
+
+        org.jdesktop.beansbinding.Binding binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, btnRemove, org.jdesktop.beansbinding.ELProperty.create("${action.enabled}"), tableView, org.jdesktop.beansbinding.BeanProperty.create("selectedElement"));
+        bindingGroup.addBinding(binding);
+
         jScrollPane3.setViewportView(tableView);
 
         typeSelect.setBackground(new java.awt.Color(153, 153, 255));
         typeSelect.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         typeSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nome", "Editora", "Edição", "Área" }));
         typeSelect.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        typeSelect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeSelectActionPerformed(evt);
+            }
+        });
 
         btnSearch.setBackground(new java.awt.Color(255, 204, 0));
         btnSearch.setText("Buscar");
         btnSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 153, 102));
@@ -278,35 +294,52 @@ public class frameInicio extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        bindingGroup.bind();
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-        Livro l = new Livro("oi","tudo","bem","?");
-        modelo.addRow(l);
+        try{
+            Biblioteca dtm = (Biblioteca)tableView.getModel();
+              dtm.remove(tableView.getSelectedRow());
+             System.out.println(tableView.getSelectedRow());
+             
+        }catch(Exception e){
+            System.out.println("ERROR: "+e.getMessage());
+        }
         
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         try{
-            System.out.println(textName.getText());
-            Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-//            l.adicionarLivro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-            modelo.addRow(l);
+            String name = textName.getText();
+            String editora = textEditora.getText();
+            String edicao = textEdicao.getText();
+            String area = textArea.getText();
+            if(name.equals("") || editora.equals("") || edicao.equals("") || area.equals("")){
+                JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
+
+            }else{
+                Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
+                modelo.addRow(l);
+                
+            }
             
             textName.setText("");
             textEditora.setText("");
             textEdicao.setText("");
             textArea.setText("");
             
-//          f.modelo.addRow(l);
         }catch(Exception e){
             System.out.println("ERROR: "+e.getMessage());
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
-        
+        if(typeSelect.getSelectedItem().equals("Nome")){
+            tableView.getColumn("Nome");
+        }
     }//GEN-LAST:event_textSearchActionPerformed
 
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
@@ -314,8 +347,22 @@ public class frameInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void textAreaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textAreaActionPerformed
-        // TODO add your handling code here:
+        if(typeSelect.getSelectedItem().equals("Nome")){
+            tableView.getColumn("Nome");
+        }
     }//GEN-LAST:event_textAreaActionPerformed
+
+    private void typeSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeSelectActionPerformed
+        System.out.println(typeSelect.getSelectedItem());
+    }//GEN-LAST:event_typeSelectActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+//        for(int i=0;i<tableView.getRowCount();i++){
+//            if(typeSelect.getSelectedItem().equals("Nome")){
+//                if(textSearch.getText().equals())
+//            }
+//        }
+    }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,5 +422,6 @@ public class frameInicio extends javax.swing.JFrame {
     private javax.swing.JTextField textName;
     private javax.swing.JTextField textSearch;
     private javax.swing.JComboBox<String> typeSelect;
+    private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables
 }

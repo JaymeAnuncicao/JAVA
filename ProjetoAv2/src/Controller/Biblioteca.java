@@ -61,4 +61,10 @@ public class Biblioteca extends AbstractTableModel{
        livros.add(l);
        this.fireTableDataChanged();
    }
+   
+   public void remove(int row){
+       livros.remove(row);
+       this.fireTableDataChanged();
+
+   }
 }
