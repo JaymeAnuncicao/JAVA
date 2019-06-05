@@ -7,6 +7,7 @@ package View;
 import Controller.Biblioteca;
 import Controller.BibliotecaTableModel;
 import Controller.Livro;
+import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 
 
@@ -20,10 +21,14 @@ public class frameInicio extends javax.swing.JFrame {
 
     /**
      * Creates new form frameInicio
+     * 
+     * 
      */
+    private frameAdicionar add;
     Biblioteca modelo = new Biblioteca();
     public frameInicio() {
-        initComponents();
+        initComponents(); 
+        frameAdicionar add = new frameAdicionar();
         tableView.setModel(modelo);
         
     }
@@ -312,28 +317,32 @@ public class frameInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRemoveActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        try{
-            String name = textName.getText();
-            String editora = textEditora.getText();
-            String edicao = textEdicao.getText();
-            String area = textArea.getText();
-            if(name.equals("") || editora.equals("") || edicao.equals("") || area.equals("")){
-                JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
-
-            }else{
-                Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-                modelo.addRow(l);
-                
-            }
-            
-            textName.setText("");
-            textEditora.setText("");
-            textEdicao.setText("");
-            textArea.setText("");
-            
-        }catch(Exception e){
-            System.out.println("ERROR: "+e.getMessage());
-        }
+//        try{
+//            String name = textName.getText();
+//            String editora = textEditora.getText();
+//            String edicao = textEdicao.getText();
+//            String area = textArea.getText();
+//            if(name.equals("") || editora.equals("") || edicao.equals("") || area.equals("")){
+//                JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
+//
+//            }else{
+//                Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
+//                modelo.addRow(l);
+//                
+//            }
+//            
+//            textName.setText("");
+//            textEditora.setText("");
+//            textEdicao.setText("");
+//            textArea.setText("");
+//            
+//        }catch(HeadlessException e){
+//            System.out.println("ERROR: "+e.getMessage());
+//        }
+        
+        
+        this.add.setVisible(true);
+        
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
@@ -357,11 +366,32 @@ public class frameInicio extends javax.swing.JFrame {
     }//GEN-LAST:event_typeSelectActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-//        for(int i=0;i<tableView.getRowCount();i++){
-//            if(typeSelect.getSelectedItem().equals("Nome")){
-//                if(textSearch.getText().equals())
-//            }
-//        }
+        try{
+            for(int i=0;i<tableView.getRowCount();i++){
+            if(typeSelect.getSelectedItem().equals("Nome") && textSearch.getText().equals(tableView.getValueAt(i, 0))){
+                System.out.println("Certo!");
+                System.out.println(tableView.getValueAt(i, 0));
+            }else if(typeSelect.getSelectedItem().equals("Editora") && textSearch.getText().equals(tableView.getValueAt(i, 1))){
+                System.out.println(tableView.getValueAt(i, 0));
+
+            }else if(typeSelect.getSelectedItem().equals("Edição") && textSearch.getText().equals(tableView.getValueAt(i, 2))){
+                System.out.println(tableView.getValueAt(i, 0));
+
+            }else if(typeSelect.getSelectedItem().equals("Área") && textSearch.getText().equals(tableView.getValueAt(i, 3))){
+                System.out.println(tableView.getValueAt(i, 0));
+
+            }
+        }
+            if(textSearch.getText().equals("")){
+                JOptionPane.showMessageDialog(this, "Preencher o campo para buscar um livro!!");
+            }
+        }catch(Exception e){
+            System.out.println("ERROR: "+e.getMessage());
+        }
+//        Biblioteca a = new Biblioteca();
+        
+//        a.getValueAt( tableView.getSelectedRow(),Integer.parseInt(typeSelect.getSelectedItem()));
+//        System.out.println(typeSelect.getSelectedItem());
     }//GEN-LAST:event_btnSearchActionPerformed
 
     /**
@@ -394,7 +424,7 @@ public class frameInicio extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameInicio().setVisible(true);
+                
             }
         });
     }

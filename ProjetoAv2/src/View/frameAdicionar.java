@@ -11,6 +11,8 @@ import javax.swing.AbstractAction;
 import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import View.frameInicio;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -161,16 +163,29 @@ public class frameAdicionar extends javax.swing.JFrame {
 
     private void btnAdicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicActionPerformed
         try{
-            System.out.println(textName.getText());
-            Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-//            l.adicionarLivro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-            Biblioteca b = new Biblioteca();
-            new frameInicio().modelo.addRow(l);
+            String name = textName.getText();
+            String editora = textEditora.getText();
+            String edicao = textEdicao.getText();
+            String area = textArea.getText();
+            if(name.equals("") || editora.equals("") || edicao.equals("") || area.equals("")){
+                JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
+
+            }else{
+                Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
+                System.out.println(l.toString());
+                
+                
+            }
             
-//          f.modelo.addRow(l);
-        }catch(Exception e){
+            textName.setText("");
+            textEditora.setText("");
+            textEdicao.setText("");
+            textArea.setText("");
+//            https://www.youtube.com/watch?v=gEI_bj5t7fo/
+            
+        }catch(HeadlessException e){
             System.out.println("ERROR: "+e.getMessage());
-        }
+        };
     }//GEN-LAST:event_btnAdicActionPerformed
 
     /**
@@ -203,7 +218,8 @@ public class frameAdicionar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frameAdicionar().setVisible(true);
+                frameAdicionar add1 = new frameAdicionar();
+                add1.setVisible(true);
             }
         });
     }
