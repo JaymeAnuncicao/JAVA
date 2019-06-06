@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
+import View.frameInicio;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 /**
@@ -11,19 +12,28 @@ import javax.swing.table.AbstractTableModel;
  * @author jayme
  */
 public class Biblioteca extends AbstractTableModel{
-    ArrayList<Livro> livros = new ArrayList<Livro>();
-    private String[] colunas = {"Nome","Editora","Edição","Área"};
 
+    
+    
+    
+    ArrayList<Livro> livros = new ArrayList<Livro>();
+            
+            
+            
+    private String[] colunas = {"Nome","Editora","Edição","Área"};
+    private frameInicio i;
     @Override
     public String getColumnName(int column) {
         return colunas[column]; //To change body of generated methods, choose Tools | Templates.
     }
     
-    
+    public void addArray(){
+        this.fireTableDataChanged();
+    }
      @Override
     public String toString() {
         String values= " ";
-        System.out.println("Lista de contatos:");
+        System.out.println("Lista de Livros:");
         for( Livro livro : livros){
             values += "Nome: "+livro.getNome() + "| Editora: " +livro.getEditora()+"| Edição: "+livro.getEdicao()+"| Área: "+livro.getArea();
             values += "\n";
@@ -56,10 +66,13 @@ public class Biblioteca extends AbstractTableModel{
         }
         return null;
     }
-    
-   public void addRow(Livro l){
-       livros.add(l);
-       this.fireTableDataChanged();
+
+   public void up(String nome, String editora, String edicao, String area){
+       Livro livro = new Livro(nome,editora,edicao,area);
+        livros.add(livro);
+        System.out.println(livro.getNome());
+        this.fireTableDataChanged();
+
    }
    
    public void remove(int row){
@@ -67,4 +80,5 @@ public class Biblioteca extends AbstractTableModel{
        this.fireTableDataChanged();
 
    }
+ 
 }

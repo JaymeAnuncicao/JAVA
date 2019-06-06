@@ -12,6 +12,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.table.DefaultTableModel;
 import View.frameInicio;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 
@@ -20,16 +21,23 @@ import javax.swing.JOptionPane;
  * @author jayme
  */
 public class frameAdicionar extends javax.swing.JFrame {
+    ArrayList<Livro> livros = new ArrayList<Livro>();
 
     /**
      * Creates new form frameAdicionar
      */
+    private frameInicio f ;
+    
     Biblioteca tableModel = new Biblioteca();
+
     public frameAdicionar() {
         initComponents();
+
         
     }
-
+//    public void setAll(String l){
+//        this.l = l;
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -171,10 +179,12 @@ public class frameAdicionar extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
 
             }else{
-                Livro l = new Livro(textName.getText(),textEditora.getText(),textEdicao.getText(),textArea.getText());
-                System.out.println(l.toString());
-                
-                
+//                Livro livro = new Livro(name,editora,edicao,area);
+                Livro l = new Livro(name,editora,edicao,area);
+//                tableModel.to(l);
+//                System.out.println(tableModel.toint());
+                   
+//                System.out.println(tableModel.toString());
             }
             
             textName.setText("");
@@ -183,8 +193,9 @@ public class frameAdicionar extends javax.swing.JFrame {
             textArea.setText("");
 //            https://www.youtube.com/watch?v=gEI_bj5t7fo/
             
-        }catch(HeadlessException e){
-            System.out.println("ERROR: "+e.getMessage());
+            
+        }catch(Exception e){
+           System.out.println("ERROR WINDOW 2: "+e.getMessage()+" \n Na linha:"+e.getClass());
         };
     }//GEN-LAST:event_btnAdicActionPerformed
 
@@ -218,8 +229,8 @@ public class frameAdicionar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                frameAdicionar add1 = new frameAdicionar();
-                add1.setVisible(true);
+               new frameAdicionar().setVisible(true);
+                
             }
         });
     }
