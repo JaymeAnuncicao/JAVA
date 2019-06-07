@@ -349,20 +349,25 @@ public class frameInicio extends javax.swing.JFrame {
                 if(typeSelect.getSelectedItem().equals("Nome") && textSearch.getText().equals(tableView.getValueAt(i, 0))){
                     System.out.println("Certo!");
                     System.out.println(tableView.getValueAt(i, 0));
+                    JOptionPane.showMessageDialog(this, "Livro(s) pesquisado(s): \n"+tableView.getValueAt(i, 0));
                 }else if(typeSelect.getSelectedItem().equals("Editora") && textSearch.getText().equals(tableView.getValueAt(i, 1))){
                     System.out.println(tableView.getValueAt(i, 0));
+                    JOptionPane.showMessageDialog(this, "Livro(s) pesquisado(s): \n"+tableView.getValueAt(i, 0));
 
                 }else if(typeSelect.getSelectedItem().equals("Edição") && textSearch.getText().equals(tableView.getValueAt(i, 2))){
                     System.out.println(tableView.getValueAt(i, 0));
+                    JOptionPane.showMessageDialog(this, "Livro(s) pesquisado(s): \n"+tableView.getValueAt(i, 0));
 
                 }else if(typeSelect.getSelectedItem().equals("Área") && textSearch.getText().equals(tableView.getValueAt(i, 3))){
                     System.out.println(tableView.getValueAt(i, 0));
+                    JOptionPane.showMessageDialog(this, "Livro(s) pesquisado(s): \n"+tableView.getValueAt(i, 0));
 
                 }
             }
             if(textSearch.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Preencher o campo para buscar um livro!!");
             }
+            textSearch.setText("");
         }catch(Exception e){
             System.out.println("ERROR: "+e.getMessage());
         }
@@ -378,13 +383,14 @@ public class frameInicio extends javax.swing.JFrame {
                 if(tableView.getSelectedRow() != -1){
                     System.out.println(tableView.getSelectedRow());
                     for(int i=0;i<tableView.getColumnCount();i++){
-                        this.edd.setNome(""+tableView.getValueAt(tableView.getSelectedRow(), i));
-                        this.edd.setEditora(""+tableView.getValueAt(tableView.getSelectedRow(), i));
-                        this.edd.setEdicao(""+tableView.getValueAt(tableView.getSelectedRow(), i));
-                        this.edd.setArea(""+tableView.getValueAt(tableView.getSelectedRow(), i));
+                        
                         System.out.println(tableView.getValueAt(tableView.getSelectedRow(), i));
 
                     }
+                    this.edd.setNome(""+tableView.getValueAt(tableView.getSelectedRow(), 0));
+                    this.edd.setEditora(""+tableView.getValueAt(tableView.getSelectedRow(), 1));
+                    this.edd.setEdicao(""+tableView.getValueAt(tableView.getSelectedRow(), 2));
+                    this.edd.setArea(""+tableView.getValueAt(tableView.getSelectedRow(), 3));
                     this.edd.setValues();
                     this.edd.setVisible(true);
             //        this.modelo.up(this.edd.getNome(), this.edd.getEditora(), this.edd.getEdicao(), this.edd.getArea());

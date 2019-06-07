@@ -59,8 +59,8 @@ public class Editar extends javax.swing.JDialog {
     public void setValues(){
         editName.setText(this.getNome());
         editEditora.setText(this.getEditora());
-        editEdicao.setText(this.edicao);
-        editArea.setText(this.area);
+        editEdicao.setText(this.getEdicao());
+        editArea.setText(this.getArea());
         
     }
     /**
