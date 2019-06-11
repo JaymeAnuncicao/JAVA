@@ -16,15 +16,15 @@ public class Editar extends javax.swing.JDialog {
     /**
      * Creates new form Editar
      */
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
     public void setEditora(String editora) {
         this.editora = editora;
     }
 
-    public void setEdicao(String edicao) {
+    public void setEdicao(int edicao) {
         this.edicao = edicao;
     }
 
@@ -39,7 +39,7 @@ public class Editar extends javax.swing.JDialog {
         return editora;
     }
 
-    public String getEdicao() {
+    public int getEdicao() {
         return edicao;
     }
 
@@ -49,7 +49,7 @@ public class Editar extends javax.swing.JDialog {
     
     private String nome;
     private String editora;
-    private String edicao;
+    private int edicao;
     private String area;
     
     public Editar(java.awt.Frame parent, boolean modal) {
@@ -59,7 +59,7 @@ public class Editar extends javax.swing.JDialog {
     public void setValues(){
         editName.setText(this.getNome());
         editEditora.setText(this.getEditora());
-        editEdicao.setText(this.getEdicao());
+        editEdicao.setText(String.valueOf(this.getEdicao()));
         editArea.setText(this.getArea());
         
     }
@@ -200,7 +200,7 @@ public class Editar extends javax.swing.JDialog {
             }else{
                 this.setNome(name);
                 this.setEditora(editora);
-                this.setEdicao(edicao);
+                this.setEdicao(Integer.parseInt(edicao));
                 this.setArea(area);
                   
             }
@@ -214,7 +214,7 @@ public class Editar extends javax.swing.JDialog {
             
             
         }catch(Exception e){
-           System.out.println("ERROR WINDOW 2: "+e.getMessage()+" \n Na linha:"+e.getClass());
+           System.out.println("ERROR : "+e.getMessage());
         };
     }//GEN-LAST:event_btnEditarActionPerformed
 

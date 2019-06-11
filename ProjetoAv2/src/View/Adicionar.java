@@ -22,7 +22,7 @@ public class Adicionar extends javax.swing.JDialog {
         this.editora = editora;
     }
 
-    public void setEdicao(String edicao) {
+    public void setEdicao(int edicao) {
         this.edicao = edicao;
     }
 
@@ -37,7 +37,7 @@ public class Adicionar extends javax.swing.JDialog {
         return editora;
     }
 
-    public String getEdicao() {
+    public int getEdicao() {
         return edicao;
     }
 
@@ -47,7 +47,7 @@ public class Adicionar extends javax.swing.JDialog {
     
     private String nome;
     private String editora;
-    private String edicao;
+    private int edicao;
     private String area;
     /**
      * Creates new form Adicionar
@@ -212,7 +212,7 @@ public class Adicionar extends javax.swing.JDialog {
             }else{
                 this.setNome(name);
                 this.setEditora(editora);
-                this.setEdicao(edicao);
+                this.setEdicao(Integer.parseInt(edicao));
                 this.setArea(area);
                   
             }
@@ -226,7 +226,7 @@ public class Adicionar extends javax.swing.JDialog {
             
             
         }catch(Exception e){
-           System.out.println("ERROR WINDOW 2: "+e.getMessage()+" \n Na linha:"+e.getClass());
+           System.out.println("ERROR : "+e.getMessage());
         };
     }//GEN-LAST:event_btnSaveActionPerformed
 

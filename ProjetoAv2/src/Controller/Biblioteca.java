@@ -66,14 +66,14 @@ public class Biblioteca extends AbstractTableModel{
         }
         return null;
     }
-    public void update(int linha, String nome, String editora, String edicao, String area){
+    public void update(int linha, String nome, String editora, int edicao, String area){
         livros.get(linha).setNome(nome);
         livros.get(linha).setEditora(editora);
         livros.get(linha).setEdicao(edicao);
         livros.get(linha).setArea(area);
         this.fireTableDataChanged();
     }
-   public void up(String nome, String editora, String edicao, String area){
+   public void up(String nome, String editora, int edicao, String area){
        Livro livro = new Livro(nome,editora,edicao,area);
         livros.add(livro);
         System.out.println(livro.getNome());
@@ -86,5 +86,9 @@ public class Biblioteca extends AbstractTableModel{
        this.fireTableDataChanged();
 
    }
- 
+   public void removeAll(){
+       livros.clear();
+       this.fireTableDataChanged();
+
+   }
 }

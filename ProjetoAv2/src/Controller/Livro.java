@@ -8,14 +8,14 @@ package Controller;
 public class Livro {
     private String nome;
     private String editora;
-    private String edicao;
+    private int edicao;
     private String area;
 
     public String getNome() {
         return nome;
     }
 
-    public Livro(String nome, String editora, String edicao, String area) {
+    public Livro(String nome, String editora, int edicao, String area) {
         this.nome = nome;
         this.editora = editora;
         this.edicao = edicao;
@@ -34,11 +34,11 @@ public class Livro {
         this.editora = editora;
     }
 
-    public String getEdicao() {
+    public int getEdicao() {
         return edicao;
     }
 
-    public void setEdicao(String edicao) {
+    public void setEdicao(int edicao) {
         this.edicao = edicao;
     }
 
