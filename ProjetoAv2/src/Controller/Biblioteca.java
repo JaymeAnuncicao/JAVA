@@ -73,11 +73,14 @@ public class Biblioteca extends AbstractTableModel{
         livros.get(linha).setArea(area);
         this.fireTableDataChanged();
     }
-   public void up(String nome, String editora, int edicao, String area){
-       Livro livro = new Livro(nome,editora,edicao,area);
-        livros.add(livro);
-        System.out.println(livro.getNome());
-        this.fireTableDataChanged();
+    public void up(String nome, String editora, int edicao, String area){
+       if(nome.equals("") || editora.equals("") || edicao == 0 || area.equals("")){
+          // NADA SERÁ FEITO AKI
+       }else{     
+            Livro livro = new Livro(nome,editora,edicao,area);
+            livros.add(livro);           
+       }
+       this.fireTableDataChanged();
 
    }
    

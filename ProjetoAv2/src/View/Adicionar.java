@@ -6,7 +6,7 @@
 package View;
 import Controller.Biblioteca;
 
-import Controller.Livro;
+
 import javax.swing.JOptionPane;
 
 /**
@@ -202,35 +202,46 @@ public class Adicionar extends javax.swing.JDialog {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         try{
+            
             String name = textName.getText();
-            String editora = textEditora.getText();
-            String edicao = textEdicao.getText();
-            String area = textArea.getText();
-            if(name.equals("") || editora.equals("") || edicao.equals("") || area.equals("")){
+            String editora1= textEditora.getText();
+            String edicao1 = textEdicao.getText();
+            String area1 = textArea.getText();
+            if(name.equals("") || editora1.equals("") || edicao1.equals("") || area1.equals("")){
                 JOptionPane.showMessageDialog(this, "Campos preenchidos de forma errada!! Favor colocar valores corretos!");
-
+                this.setNome("");
+                this.setEditora("");
+                this.setEdicao(0);
+                this.setArea("");
             }else{
                 this.setNome(name);
-                this.setEditora(editora);
-                this.setEdicao(Integer.parseInt(edicao));
-                this.setArea(area);
-                  
+                this.setEditora(editora1);
+                this.setEdicao(Integer.parseInt(edicao1));
+                this.setArea(area1);
+
             }
             
-            textName.setText("");
-            textEditora.setText("");
-            textEdicao.setText("");
-            textArea.setText("");
+            
+            
+                
+                textName.setText("");
+                textEditora.setText("");
+                textEdicao.setText("");
+                textArea.setText("");
+            
             this.dispose();
 //            https://www.youtube.com/watch?v=gEI_bj5t7fo/
             
             
         }catch(Exception e){
            System.out.println("ERROR : "+e.getMessage());
+           JOptionPane.showMessageDialog(this, "Apenas numeros na edição!");
+           
         };
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
+        
         this.dispose();
     }//GEN-LAST:event_btnCancelActionPerformed
 
