@@ -48,12 +48,10 @@ public class main {
 //        myList.add(new Aluno("lucas", "9999"), 2);
 //        System.out.println("Size: "+myList.size());
 //        myList.printList();
-        
 //        LISTA DUPLAMENTE ENCADEADA
 //        ListaDupla myList = new ListaDupla();
-//        
-////                CRIANDO OS ELEMENTOS BASES DA LISTA
-//        System.out.println("-----Lista Completa------");
+//                CRIANDO OS ELEMENTOS BASES DA LISTA
+//        System.out.println("-----Lista Completa------");;
 //        myList.add(new Aluno("jayme", "1111"));
 //        myList.add(new Aluno("carlos", "22222"));
 //        myList.add(new Aluno("julio", "00000"));
@@ -62,18 +60,32 @@ public class main {
 //        myList.add(new Aluno("fernando", "5555"));
 //        
 //        System.out.println("Size: "+myList.size());
-////        System.out.println("Index: "+ myList.indexOf(new Aluno("carlos", "22222")));
-////        System.out.println("Elemento buscado: "+myList.getElement(2));
-////        myList.add(new Aluno("raquel", "99999"), 5);
-////        myList.remove(2);
+//        System.out.println("Index: "+ myList.indexOf(new Aluno("carlos", "22222")));
+//        System.out.println("Elemento buscado: "+myList.getElement(2));
+//        myList.add(new Aluno("raquel", "99999"), 5);
+//        myList.remove(2);
 //        myList.printList();
-
 //        LITA DUPLAMENTE ENCADEADA CIRCULAR
-        ListaDuplaCircular myList = new ListaDuplaCircular();
-        
+//        ListaDuplaCircular myList = new ListaDuplaCircular();
+//        
+//        myList.add(new Aluno("jayme", "1111"));
+//        myList.add(new Aluno("carlos", "22222"));
+//        myList.add(new Aluno("julio", "00000"));
+//        myList.printList();
+        ListaGen<Aluno> myList = new ListaGen();
+
         myList.add(new Aluno("jayme", "1111"));
         myList.add(new Aluno("carlos", "22222"));
         myList.add(new Aluno("julio", "00000"));
+        myList.add(new Aluno("antonio", "33333"));
+        myList.add(new Aluno("jose", "7777"));
+        myList.add(new Aluno("fernando", "5555"));
+//        System.out.println("index: "+ myList.indexOf(new Aluno("jayme", "1111")));
+        System.out.println("elemento buscado: " + myList.getElement(1));
+//        myList.add(new Aluno("raquel", "99999"), 3);
+//        myList.remove(4);
+//        myList.remove(new Aluno("fernando", "5555"));
+        myList.set(new Aluno("raquel", "99999"), 1);
         myList.printList();
     }
 
